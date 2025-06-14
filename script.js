@@ -45,7 +45,12 @@ const sound = new Howl({
     src: ['https://assets.mixkit.co/sfx/preview/mixkit-magical-coin-win-1936.mp3'],
     volume: 0.5
 });
-
+let mickeyIcon = `
+            <div class="mickey">
+                <div class="ear-left"></div>
+                <div class="ear-right"></div>
+            </div>
+        `
 // Animación de la carta
 const envelope = document.querySelector('.envelope');
 let isOpen = false;
@@ -54,6 +59,19 @@ let isOpen = false;
 const explosionCanvas = document.getElementById('explosion-canvas');
 const ctx = explosionCanvas.getContext('2d');
 let particles = [];
+
+// Mickey SVG como imagen para usar en el canvas
+const mickeySVG = `
+<svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="60" r="30" fill="black"/>
+  <circle cx="25" cy="30" r="18" fill="black"/>
+  <circle cx="75" cy="30" r="18" fill="black"/>
+</svg>
+`;
+const mickeyImg = new window.Image();
+const svg64 = btoa(mickeySVG);
+const image64 = 'data:image/svg+xml;base64,' + svg64;
+mickeyImg.src = image64;
 
 function resizeExplosionCanvas() {
     explosionCanvas.width = explosionCanvas.offsetWidth;
@@ -69,7 +87,9 @@ function createExplosion() {
     const centerY = explosionCanvas.height / 2;
     for (let i = 0; i < 40; i++) {
         const angle = (Math.PI * 2) * (i / 40);
-        const speed = Math.random() * 6 + 4;
+        const speed = Math.random() * 6 + 10;
+        // 20% de probabilidad de ser Mickey
+        const isMickey = Math.random() < 0.3;
         particles.push({
             x: centerX,
             y: centerY,
@@ -77,7 +97,8 @@ function createExplosion() {
             vy: Math.sin(angle) * speed,
             radius: Math.random() * 6 + 4,
             color: colors[Math.floor(Math.random() * colors.length)],
-            alpha: 1
+            alpha: 1,
+            isMickey: isMickey
         });
     }
 }
@@ -89,10 +110,14 @@ function animateExplosion() {
         if (p.alpha > 0.05) {
             active = true;
             ctx.globalAlpha = p.alpha;
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = p.color;
-            ctx.fill();
+            if (p.isMickey && mickeyImg.complete) {
+                ctx.drawImage(mickeyImg, p.x - 20, p.y - 20, 40, 40);
+            } else {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+            }
             p.x += p.vx;
             p.y += p.vy;
             p.vx *= 0.96;
@@ -126,7 +151,7 @@ document.getElementById('contacto').textContent = '555-0123';
 
 // Animación inicial
 gsap.from('.envelope', {
-    duration: 1.5,
+    duration: 3.5,
     y: 100,
     opacity: 0,
     ease: 'elastic.out(1, 0.5)'
