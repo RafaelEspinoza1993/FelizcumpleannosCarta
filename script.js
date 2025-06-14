@@ -36,6 +36,8 @@ window.onload = function() {
             if (particle.path.position.y > paper.view.size.height) particle.path.position.y = 0;
         });
     };
+
+    alimentarBackground();
 };
 
 // Configuración de sonido
@@ -129,3 +131,65 @@ gsap.from('.envelope', {
     opacity: 0,
     ease: 'elastic.out(1, 0.5)'
 }); 
+
+
+function alimentarBackground(){
+    const background = document.querySelector('.background-balloons');
+    let html = '';
+    for (let i = 1; i <= 25; i++) {
+        html = '';
+        //if(i%2 == 0){
+            //\html +=`<div class="balloon balloon-${i}"></div>`
+        //}
+        /*html +=`
+            <div class="mickey">
+                <div class="ear-left"></div>
+                <div class="ear-right"></div>
+            </div>
+        `*/
+        if(i%2 == 0){
+        html +=`
+            <div class="lamparaIcon">
+                <!-- Estrellas de fondo -->
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+
+                <div class="container">
+                    <div class="lamp-container">
+                        <!-- Brillo mágico -->
+                        <div class="magical-glow"></div>
+                        
+                        <!-- Lámpara -->
+                        <img src="lampara_-_transp.png" alt="Lámpara mágica" class="lampara-img">
+
+                        
+                        <!-- Humo mágico -->
+                        <div class="smoke">
+                            <div class="smoke-trail"></div>
+                            <div class="smoke-trail"></div>
+                            <div class="smoke-trail"></div>
+                            <div class="smoke-trail"></div>
+                        </div>
+                        
+                        <!-- Partículas mágicas -->
+                        <div class="magic-particles">
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `
+        }
+        else{
+            html +=`<div></div>`
+        }
+        background.innerHTML += html;
+    }
+}

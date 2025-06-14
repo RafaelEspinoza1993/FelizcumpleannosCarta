@@ -1,0 +1,365 @@
+
+
+.lamp-container {
+    position: relative;
+    transform-style: preserve-3d;
+    animation: float 4s ease-in-out infinite;
+}
+
+.lamp {
+    position: relative;
+    width: 200px;
+    height: 120px;
+}
+
+.lampara-img {
+    position: absolute;
+    left: 50%;
+    bottom: 5%;
+    transform: translateX(-50%);
+    width: 120px;
+    max-width: 30vw;
+    z-index: 0;
+    opacity: 0.95;
+    pointer-events: none;
+}
+
+/* Cuerpo principal de la lámpara */
+.lamp-body {
+    position: absolute;
+    width: 140px;
+    height: 80px;
+    background: linear-gradient(145deg, #d4af37, #b8860b, #8b7355);
+    border-radius: 50% 50% 30% 30%;
+    bottom: 0;
+    left: 30px;
+    box-shadow: 
+        inset -10px -10px 20px rgba(0,0,0,0.3),
+        inset 10px 10px 20px rgba(255,215,0,0.3),
+        0 10px 30px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.lamp-body::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 15%;
+    width: 70%;
+    height: 40%;
+    background: linear-gradient(135deg, rgba(255,215,0,0.6), transparent);
+    border-radius: 50%;
+    filter: blur(2px);
+}
+
+/* Pico de la lámpara */
+.lamp-spout {
+    position: absolute;
+    width: 60px;
+    height: 25px;
+    background: linear-gradient(145deg, #d4af37, #b8860b);
+    border-radius: 15px 50% 50% 15px;
+    top: 35px;
+    left: -15px;
+    box-shadow: 
+        inset -5px -5px 10px rgba(0,0,0,0.3),
+        inset 5px 5px 10px rgba(255,215,0,0.3);
+    transform: rotate(-10deg);
+}
+
+/* Asa de la lámpara */
+.lamp-handle {
+    position: absolute;
+    width: 40px;
+    height: 60px;
+    border: 8px solid #b8860b;
+    border-radius: 50%;
+    top: 20px;
+    right: -10px;
+    background: transparent;
+    box-shadow: 
+        inset -3px -3px 6px rgba(0,0,0,0.3),
+        3px 3px 10px rgba(0,0,0,0.4);
+}
+
+/* Base de la lámpara */
+.lamp-base {
+    position: absolute;
+    width: 160px;
+    height: 20px;
+    background: linear-gradient(145deg, #8b7355, #654321);
+    border-radius: 50%;
+    bottom: -10px;
+    left: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+}
+
+/* Decoraciones ornamentales */
+.ornament {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    border: 3px solid #8b4513;
+    border-radius: 50%;
+    top: 25px;
+    left: 50px;
+    background: transparent;
+    opacity: 0.7;
+}
+
+.ornament::before,
+.ornament::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #8b4513;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.ornament::before {
+    left: 20px;
+}
+
+.ornament::after {
+    right: 20px;
+}
+
+/* Humo mágico */
+.smoke {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.smoke-trail {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.6), rgba(75, 0, 130, 0.4), transparent);
+    border-radius: 50%;
+    animation: smokeRise 3s linear infinite;
+}
+
+.smoke-trail:nth-child(1) {
+    animation-delay: 0s;
+    left: -30px;
+}
+
+.smoke-trail:nth-child(2) {
+    animation-delay: 0.5s;
+    left: -20px;
+    width: 50px;
+    height: 50px;
+}
+
+.smoke-trail:nth-child(3) {
+    animation-delay: 1s;
+    left: -10px;
+    width: 40px;
+    height: 40px;
+}
+
+.smoke-trail:nth-child(4) {
+    animation-delay: 1.5s;
+    left: 0px;
+    width: 35px;
+    height: 35px;
+}
+
+/* Partículas mágicas */
+.magic-particles {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #ffd700;
+    border-radius: 50%;
+    animation: sparkle 2s linear infinite;
+    box-shadow: 0 0 10px #ffd700;
+}
+
+.particle:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+.particle:nth-child(2) { top: 30%; left: 80%; animation-delay: 0.3s; }
+.particle:nth-child(3) { top: 60%; left: 10%; animation-delay: 0.6s; }
+.particle:nth-child(4) { top: 80%; left: 70%; animation-delay: 0.9s; }
+.particle:nth-child(5) { top: 20%; left: 60%; animation-delay: 1.2s; }
+.particle:nth-child(6) { top: 70%; left: 40%; animation-delay: 1.5s; }
+
+/* Brillo mágico */
+.magical-glow {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.3), transparent 70%);
+    border-radius: 50%;
+    animation: pulse 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* Título */
+.title {
+    position: absolute;
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffd700;
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 
+        0 0 10px rgba(255, 215, 0, 0.8),
+        0 0 20px rgba(255, 215, 0, 0.6),
+        0 0 30px rgba(255, 215, 0, 0.4);
+    animation: titleGlow 2s ease-in-out infinite alternate;
+    text-align: center;
+    font-family: 'Times New Roman', serif;
+}
+
+/* Instrucción */
+.instruction {
+    position: absolute;
+    bottom: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #87ceeb;
+    font-size: 16px;
+    text-align: center;
+    animation: fadeInOut 3s ease-in-out infinite;
+}
+
+/* Animaciones */
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotateY(0deg); }
+    50% { transform: translateY(-10px) rotateY(5deg); }
+}
+
+@keyframes smokeRise {
+    0% {
+        opacity: 0.8;
+        transform: translateY(0) scale(0.5);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-200px) scale(1.5);
+    }
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes titleGlow {
+    0% {
+        text-shadow: 
+            0 0 10px rgba(255, 215, 0, 0.8),
+            0 0 20px rgba(255, 215, 0, 0.6),
+            0 0 30px rgba(255, 215, 0, 0.4);
+    }
+    100% {
+        text-shadow: 
+            0 0 20px rgba(255, 215, 0, 1),
+            0 0 30px rgba(255, 215, 0, 0.8),
+            0 0 40px rgba(255, 215, 0, 0.6);
+    }
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* Efecto hover interactivo */
+.lamp-container:hover .magical-glow {
+    animation-duration: 1s;
+}
+
+.lamp-container:hover .smoke-trail {
+    animation-duration: 1.5s;
+}
+
+.lamp-container:hover .particle {
+    animation-duration: 1s;
+}
+
+.lamp-container:hover {
+    animation-duration: 2s;
+}
+
+/* Estrellas de fondo */
+.star {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle 3s ease-in-out infinite;
+}
+
+.star:nth-child(1) {
+    width: 2px;
+    height: 2px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.star:nth-child(2) {
+    width: 3px;
+    height: 3px;
+    top: 20%;
+    right: 15%;
+    animation-delay: 1s;
+}
+
+.star:nth-child(3) {
+    width: 1px;
+    height: 1px;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 2s;
+}
+
+.star:nth-child(4) {
+    width: 2px;
+    height: 2px;
+    bottom: 10%;
+    right: 10%;
+    animation-delay: 1.5s;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
