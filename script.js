@@ -53,6 +53,8 @@ let mickeyIcon = `
         `
 // Animación de la carta
 const envelope = document.querySelector('.envelope');
+const letter = document.querySelector('.letter');
+const lockContainer = document.querySelector('.lock-container');
 let isOpen = false;
 
 // Explosión de partículas
@@ -132,15 +134,26 @@ function animateExplosion() {
 }
 
 envelope.addEventListener('click', () => {
-    if (!isOpen) {
-        sound.play();
-        envelope.classList.add('open');
-        createExplosion();
-        animateExplosion();
+    if (!envelope.classList.contains('open')) {
+        // Animar la llave
+        if (lockContainer) {
+            lockContainer.classList.add('animate-key');
+            setTimeout(() => {
+                envelope.classList.add('open');
+                lockContainer.classList.remove('animate-key');
+                if (typeof sound !== 'undefined') sound.play();
+                if (typeof createExplosion === 'function') createExplosion();
+                if (typeof animateExplosion === 'function') animateExplosion();
+            }, 700); // igual que el transition de la llave
+        } else {
+            envelope.classList.add('open');
+            if (typeof sound !== 'undefined') sound.play();
+            if (typeof createExplosion === 'function') createExplosion();
+            if (typeof animateExplosion === 'function') animateExplosion();
+        }
     } else {
         envelope.classList.remove('open');
     }
-    isOpen = !isOpen;
 });
 
 // Personalización de la invitación
