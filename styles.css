@@ -183,7 +183,7 @@ body {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: url('fondo.png');
+    background-image: url('img/INVITACION-MIRANDA.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
