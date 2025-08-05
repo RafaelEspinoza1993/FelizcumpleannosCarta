@@ -179,11 +179,15 @@ body {
     display: flex;
 }
 
+.letter {
+    --invitation-image: url('img/INVITACION-MIRANDA.png');
+}
+
 .letter::before {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: url('img/INVITACION-MIRANDA.png');
+    background-image: var(--invitation-image);
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
